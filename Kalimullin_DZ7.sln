@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tumakov_DZ", "Tumakov_DZ\Tumakov_DZ.csproj", "{EC319687-D378-443F-A618-373D5BDC7B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DZ", "DZ\DZ.csproj", "{106E4B99-98BC-4A6E-987A-886DBDE511D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{F719B5B7-FF70-49FD-A743-C720E10582C8}"
+	ProjectSection(SolutionItems) = preProject
+		1.txt = 1.txt
+		input.txt = input.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC319687-D378-443F-A618-373D5BDC7B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC319687-D378-443F-A618-373D5BDC7B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC319687-D378-443F-A618-373D5BDC7B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC319687-D378-443F-A618-373D5BDC7B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{106E4B99-98BC-4A6E-987A-886DBDE511D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{106E4B99-98BC-4A6E-987A-886DBDE511D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{106E4B99-98BC-4A6E-987A-886DBDE511D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{106E4B99-98BC-4A6E-987A-886DBDE511D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {521BA280-C226-4759-A1CD-BA1CAD3A0F27}
+	EndGlobalSection
+EndGlobal
