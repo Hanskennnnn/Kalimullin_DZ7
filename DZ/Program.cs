@@ -12,7 +12,7 @@ namespace DZ
         }
         static void Task1()
         {
-            // Создание иерархии сотрудников
+   
             Employee timur = new Employee("Тимур", "Генеральный директор");
             Employee rashid = new Employee("Рашид", "Финансовый директор");
             Employee ilham = new Employee("О Ильхам", "Директор по автоматизации");
@@ -35,7 +35,7 @@ namespace DZ
 
 
 
-            // Пример задач
+      
             List<Tuple<Employee, string, Employee>> tasks = new List<Tuple<Employee, string, Employee>>()
             {
                 new Tuple<Employee, string, Employee>(lukas, "Автоматизировать отчетность", ilham),
@@ -43,7 +43,7 @@ namespace DZ
                 new Tuple<Employee, string, Employee>(volodia, "Разработать новый модуль", sergey)
             };
 
-            // Распределение задач
+     
             foreach (var task in tasks)
             {
                 bool accepted = task.Item3.AcceptsTaskFrom(task.Item1);

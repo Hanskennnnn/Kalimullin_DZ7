@@ -10,12 +10,12 @@ namespace Tumakov_DZ
     {
         static void Main(string[] args)
         {
-            //Task1();
-            //Task2();
+            Task1();
+            Task2();
             Task3();
-            //Task4();
-            //Task5();
-            //Task6();
+            Task4();
+            Task5();
+            Task6();
         }
         static  void Task1()
         {
@@ -48,41 +48,32 @@ namespace Tumakov_DZ
         }
         static void Task3()
         {
-            Console.WriteLine("\nУпражнение 8.3\n");
+            Console.WriteLine("Введите полный путь к входному файлу:");
+        string inputFilePath = Console.ReadLine();
 
-            Console.WriteLine("Введите название файла (1.txt умолчанию)");
-            string name = Console.ReadLine();
-            if (String.IsNullOrEmpty(name))
-            {
-                name = "1.txt";
-            }
-            string filePath = $"{Directory.GetCurrentDirectory()}..\\..\\..\\..\\resourses\\{name}";
-            if (File.Exists(filePath))
-            {
-                string readContent = File.ReadAllText(filePath);
+        Console.WriteLine("Введите имя выходного файла (полный путь или имя в текущем каталоге):");
+        string outputFilePath = Console.ReadLine();
 
-                File.WriteAllText($"{Directory.GetCurrentDirectory()}..\\..\\..\\..\\resourses\\2.txt", GetUpper(readContent));
-
-                Console.WriteLine("Выходные данные записаны в файл resourses/2.txt");
-            }
-            else
-            {
-                Console.WriteLine("Файла с таким именем нет");
-            }
-        }
-
-        /// <summary>
-        /// Переводит строку в uppercase и возвращает её.
-        /// </summary>
-        /// <returns>Строка string</returns>
-        static string GetUpper(string str)
+        try
         {
-            string retStr = String.Empty;
-            foreach (char c in str)
+
+            if (!File.Exists(inputFilePath))
             {
-                retStr += c.ToString().ToUpper();
+                Console.WriteLine($"Файл {inputFilePath} не найден.");
+                return;
             }
-            return retStr;
+
+    
+            string content = File.ReadAllText(inputFilePath);
+            string uppercaseContent = content.ToUpper();
+            File.WriteAllText(outputFilePath, uppercaseContent);
+
+            Console.WriteLine($"Содержимое файла {inputFilePath} успешно записано в файл {outputFilePath} заглавными буквами.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Произошла ошибка: {ex.Message}");
+        }
         }
         static void Task4()
         {
@@ -159,7 +150,7 @@ namespace Tumakov_DZ
         static void Task6()
         {
             Console.WriteLine("\nДомашнее задание 8.2");
-            // Создаем список песен
+
             List<Song> songs = new List<Song>
         {
             new Song(),
@@ -168,7 +159,7 @@ namespace Tumakov_DZ
             new Song()
         };
 
-            // Заполняем информацию о песнях
+    
             songs[0].SetName("Song 1");
             songs[0].SetAuthor("Author 1");
             songs[1].SetName("Song 2");
@@ -178,19 +169,18 @@ namespace Tumakov_DZ
             songs[3].SetName("Song 4");
             songs[3].SetAuthor("Author 4");
 
-            // Создаем связи prev между песнями
             for (int i = 1; i < songs.Count; i++)
             {
                 songs[i].SetPrev(songs[i - 1]);
             }
 
-            // Выводим информацию о песнях
+     
             foreach (var song in songs)
             {
                 Console.WriteLine(song.Title());
             }
 
-            // Сравниваем первую и вторую песню
+    
             if (songs[0].Equals(songs[1]))
             {
                 Console.WriteLine("Первая и вторая песня одинаковые.");

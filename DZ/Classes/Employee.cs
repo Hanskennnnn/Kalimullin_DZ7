@@ -18,7 +18,7 @@ namespace DZ
 
         public bool AcceptsTaskFrom(Employee manager)
         {
-            // Проверка на прямое подчинение
+
             return Subordinates.Contains(manager) || manager.Subordinates.Contains(this);
         }
 
