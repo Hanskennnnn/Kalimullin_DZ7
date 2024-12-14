@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using Tumakov_DZ;
 
 
 namespace Tumakov_DZ
@@ -10,12 +12,13 @@ namespace Tumakov_DZ
     {
         static void Main(string[] args)
         {
-            Task1();
-            Task2();
-            Task3();
-            Task4();
-            Task5();
-            Task6();
+            //Task1();
+            //Task2();
+            //Task3();
+            //Task4();
+            //Task5();
+            //Task6();
+            Task7();
         }
         static  void Task1()
         {
@@ -190,6 +193,110 @@ namespace Tumakov_DZ
                 Console.WriteLine("Первая и вторая песня разные.");
             }
 
+        }
+        static void Task7()
+        {
+            Queue<Resident> residentsQueue = new Queue<Resident>();
+            Console.WriteLine("Сколько жителей в очереди к Зине?");
+
+            int n;
+            while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
+            {
+                Console.WriteLine("Некорректный ввод. Введите положительное целое число:");
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"Введите данные для жителя {i + 1} (Имя, Проблема, Степень скандальности, Ум):");
+                Console.Write("Имя: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Введите проблему (например: 'отопление не работает', 'задолженность', 'сломался кран'): ");
+                string problemDescription = Console.ReadLine();
+
+                Console.Write("Степень скандальности (0-10): ");
+                int scandalLevel;
+                while (!int.TryParse(Console.ReadLine(), out scandalLevel) || scandalLevel < 0 || scandalLevel > 10)
+                {
+                    Console.WriteLine("Некорректный ввод. Введите число от 0 до 10:");
+                }
+
+                Console.Write("Ум (1 - умный, 0 - тупой): ");
+                int smartness;
+                while (!int.TryParse(Console.ReadLine(), out smartness) || (smartness != 0 && smartness != 1))
+                {
+                    Console.WriteLine("Некорректный ввод. Введите 1 для умного или 0 для тупого:");
+                }
+
+                Problem problem = DefineProblem(problemDescription);
+                Resident resident = new Resident(name, problem, scandalLevel, smartness);
+                residentsQueue.Enqueue(resident);
+            }
+
+            // Обработка очереди
+            List<Resident>[] windows = new List<Resident>[3]
+            {
+            new List<Resident>(),
+            new List<Resident>(),
+            new List<Resident>()
+            };
+
+            while (residentsQueue.Any())
+            {
+                Resident resident = residentsQueue.Dequeue();
+                Console.WriteLine($"Обрабатываем жителя: {resident.Name} ({resident.PassportNumber})");
+                int window = 2; // По умолчанию - третье окно
+
+                if (resident.Smartness == 1)
+                {
+                    window = resident.Problem.Number;
+                }
+                else
+                {
+                    Random random = new Random();
+                    window = random.Next(0, 3); // Случайный выбор окна
+                }
+
+                if (resident.ScandalLevel >= 5)
+                {
+                    Console.WriteLine($"{resident.Name} - скандалист. Сколько людей он хочет обогнать?");
+                    int skip;
+                    while (!int.TryParse(Console.ReadLine(), out skip) || skip < 0)
+                    {
+                        Console.WriteLine("Некорректный ввод. Введите неотрицательное число:");
+                    }
+
+                    int position = Math.Max(0, windows[window].Count - skip);
+                    if (position > windows[window].Count)
+                    {
+                        position = windows[window].Count;
+                    }
+                    windows[window].Insert(position, resident);
+                }
+                else
+                {
+                    windows[window].Add(resident);
+                }
+            }
+
+            // Вывод очередей по окнам
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Очередь в окно {i + 1}:");
+                foreach (var r in windows[i])
+                {
+                    Console.WriteLine($"Имя: {r.Name}, Номер паспорта: {r.PassportNumber}, Проблема: {r.Problem.Description}, Степень скандальности: {r.ScandalLevel}, Ум: {r.Smartness}");
+                }
+            }
+        }
+
+        static Problem DefineProblem(string description)
+        {
+            if (description.ToLower().Contains("отопление"))
+                return new Problem(0, description);
+            if (description.ToLower().Contains("оплата"))
+                return new Problem(1, description);
+            return new Problem(2, description);
         }
         public static void CheckIfIFormattable(object value)
         {

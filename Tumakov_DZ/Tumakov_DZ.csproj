@@ -47,9 +47,9 @@
     <Compile Include="Classes\Problem.cs" />
     <Compile Include="Classes\Resident.cs" />
     <Compile Include="Classes\Song.cs" />
+    <Compile Include="Classes\Temperament.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Temperaments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
